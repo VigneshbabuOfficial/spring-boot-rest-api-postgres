@@ -62,8 +62,12 @@ public class EntityCreate {
 				// @Column(name = "share_this_multi_touch_with", columnDefinition = "character
 				// varying(255)")
 
-				if (dataType.startsWith("int") || dataType.startsWith("serial")) {
+				if ( dataType.startsWith("bigint") ||  dataType.startsWith("int") || dataType.startsWith("serial")) {
 
+					if( "id".equals(columnName) ) {
+						System.out.println("@Id");
+					}
+					
 					String entityColumn = "";
 
 					entityColumn += "@Column(name = \"" + columnName + "\"";
@@ -86,7 +90,13 @@ public class EntityCreate {
 
 					System.out.println(entityColumn);
 
-					System.out.println("private Integer " + entityColumnName + ";");
+					if(dataType.startsWith("bigint") || "id".equals(columnName)) {
+						
+						System.out.println("private Long " + entityColumnName + ";");
+					} else {
+						
+						System.out.println("private Integer " + entityColumnName + ";");
+					}
 
 				} else if (dataType.startsWith("bool")) {
 
@@ -168,7 +178,7 @@ public class EntityCreate {
 
 					System.out.println("@JsonFormat(pattern = \"yyyy-MM-dd'T'HH:mm:ss'Z'\")");
 
-					System.out.println("private Java.util.Date " + entityColumnName + ";");
+					System.out.println("private LocalDate " + entityColumnName + ";");
 
 				} else if (dataType.startsWith("json")) {
 
