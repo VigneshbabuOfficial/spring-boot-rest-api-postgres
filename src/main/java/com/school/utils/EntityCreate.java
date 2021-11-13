@@ -41,7 +41,7 @@ public class EntityCreate {
 	 */
 	private static void getColumnsData(String tableQry) {
 
-		try (Connection devqaCon = getConnectleader12Connection();
+		try (Connection devqaCon = getConnection();
 				PreparedStatement ps = devqaCon.prepareStatement(tableQry);
 				ResultSet rSet = ps.executeQuery();) {
 
@@ -249,7 +249,7 @@ public class EntityCreate {
 	@SuppressWarnings("unused")
 	private static void getEntityData(String string) {
 
-		try (Connection devqaCon = getConnectleader12Connection();
+		try (Connection devqaCon = getConnection();
 				PreparedStatement ps = devqaCon.prepareStatement(string);
 				ResultSet rSet = ps.executeQuery();) {
 
@@ -341,7 +341,7 @@ public class EntityCreate {
 		return resultPlaceHolder.toString().trim();
 	}
 
-	public static Connection getConnectleader12Connection() {
+	public static Connection getConnection() {
 
 		String localurl = "jdbc:postgresql://localhost/school-db", username = "postgres", password = "admin";
 
