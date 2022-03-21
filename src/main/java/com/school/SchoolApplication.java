@@ -17,11 +17,13 @@ import com.school.utils.SchoolLogger;
 public class SchoolApplication {
 
 	public static void main(String[] args) {
+		System.out.println("  SchoolApplication - main");
 		SpringApplication.run(SchoolApplication.class, args);
 	}
 	
 	@Bean
 	public SchoolLogger logger() {
+		System.out.println("  SchoolApplication - logger");
 		return SchoolLogger.getLogger(" ##### com.school.api.v1.O ##### ");
 	}
 	
@@ -29,6 +31,8 @@ public class SchoolApplication {
 	@RequestScope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 	public RequestId requestId() {
 
+		System.out.println("  SchoolApplication - RequestId requestId");
+		
 		String string = Long.toString( Instant.now().toEpochMilli() );
 		UUID requestId = UUID.nameUUIDFromBytes( string.getBytes() );
 
@@ -37,6 +41,7 @@ public class SchoolApplication {
 	
 	@Bean
 	public ModelMapper modelMapper() {
+		System.out.println("  SchoolApplication - ModelMapper modelMapper");
 		return new ModelMapper();
 	}
 
